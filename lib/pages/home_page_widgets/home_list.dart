@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:get/state_manager.dart';
 import 'package:getx_demo/controllers/home_controller.dart';
 import 'package:getx_demo/models/user.dart';
+import 'package:getx_demo/pages/profile_page.dart';
 
 class HomeList extends StatelessWidget {
   const HomeList({Key key}) : super(key: key);
@@ -22,6 +24,7 @@ class HomeList extends StatelessWidget {
             return ListTile(
               title: Text(user.firstName),
               subtitle: Text(user.email),
+              onTap: () => _.showProfilePage(user),
             );
           },
           itemCount: _.users.length,
