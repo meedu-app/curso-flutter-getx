@@ -1,12 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 import 'package:getx_demo/controllers/reactive_controller.dart';
+import 'package:getx_demo/controllers/socket_client_controller.dart';
 
 class ReactivePage extends StatelessWidget {
   const ReactivePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final socketController = Get.find<SocketClientController>();
     return GetBuilder<ReactiveController>(
       init: ReactiveController(),
       builder: (_) {
@@ -14,8 +17,16 @@ class ReactivePage extends StatelessWidget {
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              CupertinoTextField(
+                onChanged: (text) {
+                  socketController.setSearchText(text);
+                },
+              ),
+              // Obx(
+              //   () => Text("age ${_.myPet.age}"),
+              // ),
               Obx(
-                () => Text("age ${_.myPet.age}"),
+                () => Text(socketController.message.value),
               ),
               FlatButton(
                   onPressed: () {
