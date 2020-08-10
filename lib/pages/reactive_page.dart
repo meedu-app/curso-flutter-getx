@@ -15,44 +15,51 @@ class ReactivePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Obx(
-                () {
-                  print("🎃");
-                  return Text(
-                    _.counter.value.toString(),
-                    style: TextStyle(fontSize: 30),
-                  );
-                },
+                () => Text("age ${_.myPet.age}"),
               ),
-              Obx(
-                () {
-                  print("🤪");
-                  return Text(
-                    _.currentDate.value,
-                    style: TextStyle(fontSize: 30),
-                  );
-                },
-              ),
+              FlatButton(
+                  onPressed: () {
+                    _.setPetAge(_.myPet.age + 1);
+                  },
+                  child: Text("set age"))
             ],
           ),
-          floatingActionButton: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              FloatingActionButton(
-                heroTag: 'add',
-                child: Icon(Icons.add),
-                onPressed: () {
-                  _.increment();
-                },
-              ),
-              FloatingActionButton(
-                heroTag: 'date',
-                child: Icon(Icons.calendar_today),
-                onPressed: () {
-                  _.getDate();
-                },
-              )
-            ],
-          ),
+          // body: Obx(
+          //   () => ListView(
+          //     children: _.mapItems.values
+          //         .map(
+          //           (e) => ListTile(
+          //             title: Text(e),
+          //             trailing: IconButton(
+          //               icon: Icon(Icons.delete),
+          //               onPressed: () => _.removeMapItem(e),
+          //             ),
+          //           ),
+          //         )
+          //         .toList(),
+          //   ),
+          // ),
+          // floatingActionButton: Row(
+          //   mainAxisAlignment: MainAxisAlignment.end,
+          //   children: [
+          //     FloatingActionButton(
+          //       heroTag: 'add',
+          //       child: Icon(Icons.add),
+          //       onPressed: () {
+          //         // _.increment();
+          //         // _.addItem();
+          //         _.addMapItem();
+          //       },
+          //     ),
+          //     FloatingActionButton(
+          //       heroTag: 'date',
+          //       child: Icon(Icons.calendar_today),
+          //       onPressed: () {
+          //         _.getDate();
+          //       },
+          //     )
+          //   ],
+          // ),
         );
       },
     );
