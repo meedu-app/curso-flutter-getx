@@ -27,9 +27,9 @@ class ReactiveController extends GetxController {
   }
 
   @override
-  void onClose() {
+  Future<void> onClose() {
     _subscription?.cancel();
-    super.onClose();
+    return super.onClose();
   }
 
   void increment() {

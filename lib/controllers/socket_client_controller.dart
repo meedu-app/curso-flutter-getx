@@ -42,11 +42,11 @@ class SocketClientController extends GetxController {
   }
 
   @override
-  void onClose() {
+  Future<void> onClose() {
     if (_timer != null) {
       _timer.cancel();
     }
-    super.onClose();
+    return super.onClose();
   }
 
   void setSearchText(String text) {
